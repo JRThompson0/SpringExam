@@ -1,14 +1,11 @@
 package com.cohort15.SpringExam.Response;
 
-import com.cohort15.SpringExam.Exceptions.UserNotFoundException;
+import com.cohort15.SpringExam.Exceptions.ResourceNotFoundException;
 import com.cohort15.SpringExam.Models.User;
 import com.cohort15.SpringExam.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.StreamingHttpOutputMessage;
-
-import java.util.Optional;
 
 public class UserResponse
 {
@@ -38,7 +35,7 @@ public class UserResponse
             body.setCode(HttpStatus.NO_CONTENT.value());
             body.setMessage("User deleted successfully");
             return new ResponseEntity<>(body, HttpStatus.NO_CONTENT);
-        } catch (UserNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
             Body body = new Body();
             body.setCode(HttpStatus.NOT_FOUND.value());
             body.setMessage(e.getMessage());
@@ -54,7 +51,7 @@ public class UserResponse
             body.setCode(HttpStatus.OK.value());
             body.setMessage("Customer retrieval success");
             return new ResponseEntity<>(body, HttpStatus.OK);
-        } catch (UserNotFoundException u) {
+        } catch (ResourceNotFoundException u) {
             Body body = new Body();
             body.setCode(HttpStatus.NOT_FOUND.value());
             body.setMessage("Customer not found");
@@ -75,12 +72,14 @@ public class UserResponse
             body.setCode(HttpStatus.CREATED.value());
             body.setMessage("User created");
             return ResponseEntity.ok(body);
-        }catch(Exception exception){
+        }
+        catch(Exception exception){
             Body body = new Body();
                     body.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
                     body.setMessage("error creating user");
                     return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
-                }
-            }
         }
     }
+}
+
+

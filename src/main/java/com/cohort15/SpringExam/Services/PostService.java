@@ -1,5 +1,6 @@
 package com.cohort15.SpringExam.Services;
 
+import com.cohort15.SpringExam.Exceptions.ResourceNotFoundException;
 import com.cohort15.SpringExam.Models.Post;
 import com.cohort15.SpringExam.Repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class PostService
     public Post getPostByID(Long postID)
     {
         Post dapost = postRepository.getReferenceById(postID);
-        if (dapost==null)
-            throw new PostNotFoundException("Post with ID "+postID+" not found!");
+        if (dapost.isEmpty())
+            throw new ResourceNotFoundException("Post with ID "+postID+" not found!");
+        else return dapost;
     }
 }

@@ -9,6 +9,8 @@ import javax.annotation.processing.Generated;
 @Entity
 public class User
 {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="USER_ID")
@@ -44,5 +46,12 @@ public class User
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+    public boolean isEmpty()
+    {
+       return username == null;
+    }
+    public long getId() {
+        return id;
     }
 }

@@ -1,6 +1,6 @@
 package com.cohort15.SpringExam.Errors;
 
-import com.cohort15.SpringExam.Exceptions.UserNotFoundException;
+import com.cohort15.SpringExam.Exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
@@ -29,8 +29,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         this.messageSource = messageSource;
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    protected ResponseEntity<Object> handleCustomerNotFoundException(UserNotFoundException unfe, WebRequest request, HttpHeaders headers, HttpStatusCode status)
+    @ExceptionHandler(ResourceNotFoundException.class)
+    protected ResponseEntity<Object> handleCustomerNotFoundException(ResourceNotFoundException unfe, WebRequest request, HttpHeaders headers, HttpStatusCode status)
     {
         ErrorDetail errorDetail = new ErrorDetail();
         errorDetail.setTimeStamp(new Date().getTime());
