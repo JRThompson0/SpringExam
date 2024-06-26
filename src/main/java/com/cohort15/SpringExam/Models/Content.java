@@ -13,7 +13,5 @@ public class Content
     @NotNull
     @JoinColumn(name="POST_ID")
     Post post;
-
     private String message;
-    private Object data;
 }

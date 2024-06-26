@@ -2,6 +2,7 @@ package com.cohort15.SpringExam.Services;
 
 import com.cohort15.SpringExam.Exceptions.ResourceNotFoundException;
 import com.cohort15.SpringExam.Models.Post;
+import com.cohort15.SpringExam.Repositories.ContentRepository;
 import com.cohort15.SpringExam.Repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,8 @@ public class PostService
 {
     @Autowired
     PostRepository postRepository;
-
+    @Autowired
+    ContentRepository contentRepository;
     public Iterable<Post> getAllPosts()
     {
         return postRepository.findAll();

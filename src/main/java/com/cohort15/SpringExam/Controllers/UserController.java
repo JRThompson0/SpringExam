@@ -35,7 +35,7 @@ public class UserController
     }
     @PutMapping("/users/{userID}")
     public ResponseEntity<?> updateUserByID(@PathVariable long userID, @RequestBody User user) {
-        return new ResponseEntity<>(UserResponse.ReplaceUserAtID(userID), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(userResponse.replaceUserAtID(user,userID), HttpStatus.ACCEPTED);
     }
     @GetMapping("/users/search/")
     public ResponseEntity<?> searchByName(@RequestParam(name = "usernamesearch") String searchName)

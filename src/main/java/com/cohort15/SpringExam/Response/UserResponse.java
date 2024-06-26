@@ -80,6 +80,40 @@ public class UserResponse
                     return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    public ResponseEntity<?> replaceUserAtID(User user, Long ID)
+    {
+        try{
+            User createdUser = userService.updateUserByID(user,ID);
+            Body body = new Body();
+            body.setData(createdUser);
+            body.setCode(HttpStatus.CREATED.value());
+            body.setMessage("User updated");
+            return ResponseEntity.ok(body);
+        }
+        catch(Exception exception){
+            Body body = new Body();
+            body.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            body.setMessage("error updating user");
+            return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    public ResponseEntity<?> userNameSearch(String searchName)
+    {
+        try{
+            User foundUser = userService.searchByName(searchName);
+            Body body = new Body();
+            body.setData(foundUser);
+            body.setCode(HttpStatus.CREATED.value());
+            body.setMessage("User updated");
+            return ResponseEntity.ok(body);
+        }
+        catch(Exception exception){
+            Body body = new Body();
+            body.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            body.setMessage("error updating user");
+            return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
 
 

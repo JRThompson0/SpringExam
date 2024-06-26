@@ -4,13 +4,15 @@ import com.cohort15.SpringExam.Models.enums.Gender;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.processing.Generated;
+
+import static com.cohort15.SpringExam.Models.enums.Gender.*;
+
 @Entity
 public class User
 {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="USER_ID")
@@ -19,8 +21,7 @@ public class User
     @Column(unique = true, name="USERNAME")
     private String username;
     @Column(name="GENDER")
-    private Gender gender;
-
+    private Gender gender=Other;
     public User(String username, Gender gender) {
         this.username = username;
         this.gender = gender;

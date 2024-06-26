@@ -53,4 +53,8 @@ public class UserService
       logger.info("Updated user "+currentUser.getId()+". New Username: " +currentUser.getUsername());
       return currentUser;
   }
+  public User searchByName(String username)
+  {
+      return (User) userRepository.findByUsername(username);
+  }
 }
